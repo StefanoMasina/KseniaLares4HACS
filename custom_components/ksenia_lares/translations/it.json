@@ -1,0 +1,18 @@
+{
+    "config": {
+
+        "step": {
+            "user": {
+                "title": "Configura il tuo dispositivo",
+                "data": {
+                    "code": "Pin Utente",
+                    "ip": "Indirizzo Ip dispositivo",
+                    "port": "Porta",
+                    "mac_addr": "Indirizzo MAC",
+                    "pin_super": "Pin super Utente"
+                }
+            }
+        }
+    }
+
+}
