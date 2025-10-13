@@ -11,5 +11,5 @@
   "ssdp": [],
   "zeroconf": [],
   "version": "1.0.0",
-  "issues": "https://github.com/VLScarabello/KseniaLares4HACS"
+  "issue_tracker": "https://github.com/VLScarabello/KseniaLares4HACS/issues"
 }
