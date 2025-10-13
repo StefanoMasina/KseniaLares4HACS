@@ -4,11 +4,12 @@
   "codeowners": ["@VLScarabello"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/VLScarabello/KseniaLares4HACS",
   "homekit": {},
+  "documentation": "https://github.com/VLScarabello/KseniaLares4HACS",
   "iot_class": "local_push",
-  "quality_scale": "bronze",
   "requirements": ["websockets==15.0"],
   "ssdp": [],
-  "zeroconf": []
+  "zeroconf": [],
+  "version": "1.0.0",
+  "issues": "https://github.com/VLScarabello/KseniaLares4HACS"
 }
