@@ -6,6 +6,8 @@ import random
 import ssl
 import time
 
+from homeassistant.components.alarm_control_panel import AlarmControlPanelState
+
 import websockets
 
 from .const import *
@@ -27,7 +29,7 @@ class SimpleAlarmWebSocketClient:
         self._pin = pin
         self._id = 0
         self._reciver = ""
-        self._stato_allarme = STATE_ALARM_DISARMED
+        self._stato_allarme = AlarmControlPanelState.DISARMED
         self._recv_lock = asyncio.Lock()
 
     async def send(self, message):

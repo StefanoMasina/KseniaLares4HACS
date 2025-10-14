@@ -37,7 +37,7 @@ class WebsocketSuperUser:
         self._pinSuper = pinSuper
         self._id = 0
         self._reciver = ""
-        self._stato_allarme = STATE_ALARM_DISARMED
+        self._stato_allarme = AlarmControlPanelState.DISARMED
         self._recv_lock = asyncio.Lock()
         self.coordinator = coordinator
 
