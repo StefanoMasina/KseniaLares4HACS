@@ -20,15 +20,20 @@ _PLATFORMS: list[Platform] = [
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up KseniaIntegration from a config entry."""
+    """Set up Simple Alarm from a config entry."""
     hass.data.setdefault(DOMAIN, {})
+    print("ci sono")
     websocket_uri = (
         "wss://" + entry.data.get("ip") + ":" + entry.data.get("port") + "/KseniaWsock"
     )
+
+    # Inizializza WebSocket e gestisci il login
     websocket_client = SimpleAlarmWebSocketClient(
         websocket_uri, entry.data.get("macAddr"), entry.data.get("code")
     )
+
     await websocket_client.connect()
+
     coordinator = AlarmDataCoordinator(hass, websocket_client)
     websocket_super_user = WebsocketSuperUser(
         websocket_uri,
@@ -40,13 +45,24 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     await websocket_super_user.connectSuperUser()
 
+    # Crea entità, servizi, ecc.
+    hass.async_create_task(
+        hass.config_entries.async_forward_entry_setup(
+            entry, Platform.ALARM_CONTROL_PANEL
+        )
+    )
     hass.data[DOMAIN][entry.entry_id] = {DATA_COORDINATOR: coordinator}
 
-    await hass.config_entries.async_forward_entry_setups(entry, _PLATFORMS)
+    hass.async_create_task(
+        hass.config_entries.async_forward_entry_setups(
+            entry,
+            [
+                Platform.ALARM_CONTROL_PANEL,
+                Platform.SWITCH,
+                Platform.BUTTON,
+                Platform.BINARY_SENSOR,
+            ],
+        )
+    )
 
     return True
-
-
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Unload a config entry."""
-    return await hass.config_entries.async_unload_platforms(entry, _PLATFORMS)
