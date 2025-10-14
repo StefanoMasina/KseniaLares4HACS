@@ -8,6 +8,8 @@ import time
 
 import websockets
 
+from homeassistant.components.alarm_control_panel import AlarmControlPanelState
+
 from .const import *
 from .coordinator import AlarmDataCoordinator
 from .crc import addCRC
