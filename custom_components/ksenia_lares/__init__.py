@@ -45,15 +45,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     await websocket_super_user.connectSuperUser()
 
-    # Crea entità, servizi, ecc.
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(
-            entry, Platform.ALARM_CONTROL_PANEL
-        )
-    )
     hass.data[DOMAIN][entry.entry_id] = {DATA_COORDINATOR: coordinator}
 
-    hass.async_create_task(
+    await hass.async_create_task(
         hass.config_entries.async_forward_entry_setups(
             entry,
             [
@@ -64,5 +58,3 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             ],
         )
     )
-
-    return True

@@ -1,11 +1,14 @@
 {
+  "title": "Ksenia Lares 4.0",
   "config": {
     "step": {
       "user": {
         "data": {
-          "host": "[%key:common::config_flow::data::host%]",
-          "username": "[%key:common::config_flow::data::username%]",
-          "password": "[%key:common::config_flow::data::password%]"
+          "code"    : "User pin",
+          "ip"      : "IP Address",
+          "port"    : "Port",
+          "macAddr" : "Mac Address",
+          "pinSuper": "Pin Super User"
         }
       }
     },
