@@ -100,7 +100,7 @@ class WebsocketSuperUser:
                     subprotocols=["KS_WSOCK"],
                     ping_interval=20,
                     ping_timeout=10,
-                    timeout=30,
+                    open_timeout=30,
                 )
                 self._connected = True
                 _LOGGER.info(f"Connected super user to WebSocket server at {self._uri}")
